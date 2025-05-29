@@ -8,16 +8,16 @@ import {
   Post,
 } from '@nestjs/common';
 import { SchoolService } from './school.service';
-import { School } from 'generated/prisma';
 import { CreateSchoolDto } from 'src/dtos/create-school.dto';
 import { UpdateSchoolDto } from 'src/dtos/update-schol.dto';
+import { School } from '@prisma/client';
 
 @Controller('school')
 export class SchoolController {
   constructor(private readonly schoolService: SchoolService) {}
 
   @Get(':id')
-  async get(@Param('id') id: string): Promise<School> {
+  async get(@Param('id') id: string): Promise<School | null> {
     return await this.schoolService.findOne(id);
   }
 
