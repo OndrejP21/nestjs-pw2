@@ -37,7 +37,7 @@ export class SchoolController {
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<Pick<School, 'id' | 'name'>> {
     return await this.schoolService.remove(id);
   }
 }
